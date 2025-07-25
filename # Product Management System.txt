@@ -1,0 +1,145 @@
+# Product Management System
+
+A full-stack web application for managing products with secure authentication, built using React (frontend) and Node.js/Express/MongoDB (backend).
+
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Setup & Installation](#setup--installation)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+- [API Endpoints](#api-endpoints)
+- [Usage](#usage)
+- [License](#license)
+
+---
+
+## Features
+
+- User registration and login (JWT authentication)
+- Add, edit, delete, and list products (per user)
+- Responsive UI with Tailwind CSS
+- Protected routes for product management
+
+---
+
+## Tech Stack
+
+- **Frontend:** React, Redux Toolkit, React Router, Axios, Tailwind CSS, Vite
+- **Backend:** Node.js, Express, MongoDB, Mongoose, JWT, bcryptjs
+
+---
+
+## Project Structure
+
+```
+Backend/
+  controllers/
+  middleware/
+  models/
+  routes/
+  config/
+  .env
+  index.js
+  package.json
+
+frontend/
+  public/
+  src/
+    api/
+    app/
+    assets/
+    components/
+    features/
+    pages/
+    App.jsx
+    main.jsx
+    index.css
+  package.json
+  vite.config.js
+  ...
+```
+
+---
+
+## Setup & Installation
+
+### Backend
+
+1. **Install dependencies:**
+   ```sh
+   cd Backend
+   npm install
+   ```
+
+2. **Configure environment variables:**
+   - Copy `.env` and set your `MONGO_URI` and `JWT_SECRET`.
+
+3. **Start the backend server:**
+   ```sh
+   npm run dev
+   ```
+   The server runs on `http://localhost:5000` by default.
+
+### Frontend
+
+1. **Install dependencies:**
+   ```sh
+   cd frontend
+   npm install
+   ```
+
+2. **Start the frontend dev server:**
+   ```sh
+   npm run dev
+   ```
+   The app runs on `http://localhost:5173` by default.
+
+   production link `https://task-frontend-brown.vercel.app/`
+
+---
+
+## API Endpoints
+
+### Auth
+
+- `POST /api/auth/register`  
+  Register a new user.  
+  **Body:** `{ username, password }`
+
+- `POST /api/auth/login`  
+  Login and receive JWT token.  
+  **Body:** `{ username, password }`
+
+### Products (Protected, require `Authorization: Bearer <token>`)
+
+- `GET /api/products`  
+  Get all products for the logged-in user.
+
+- `POST /api/products`  
+  Create a new product.  
+  **Body:** `{ name, price, description }`
+
+- `PUT /api/products/:id`  
+  Update a product by ID.
+
+- `DELETE /api/products/:id`  
+  Delete a product by ID.
+
+---
+
+## Usage
+
+1. Register a new account or login.
+2. After login, manage your products (add, edit, delete).
+3. Each user can only see and manage their own products.
+
+---
+
+## License
+
+This project is licensed under the MIT License.

@@ -1,6 +1,5 @@
 import Product from '../models/Product.js';
 
-// Get products - only for logged in user
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find({ createdBy: req.user });
@@ -10,7 +9,6 @@ export const getProducts = async (req, res) => {
   }
 };
 
-// Create a new product (protected)
 export const createProduct = async (req, res) => {
   const { name, price, description } = req.body;
   try {
@@ -26,11 +24,9 @@ export const createProduct = async (req, res) => {
   }
 };
 
-// Update a product by ID (protected)
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
   try {
-    // Ensure user owns the product before updating
     const product = await Product.findOne({ _id: id, createdBy: req.user });
     if (!product) return res.status(404).json({ message: 'Product not found or unauthorized' });
 
@@ -45,11 +41,10 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// Delete a product by ID (protected)
+
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
-    // Ensure user owns the product before deleting
     const product = await Product.findOneAndDelete({ _id: id, createdBy: req.user });
     if (!product) return res.status(404).json({ message: 'Product not found or unauthorized' });
 
